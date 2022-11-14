@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.checkbox-styled {
+    width: 20px;
+    height: 20px;
+    background: #383A40;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &.checked {
+        background-image: url(/web/resources/Check.svg);
+    }
+}
+
+.text-question {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.title-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto 16px;
+    max-width: 433px;
+
+    .icon-timer {
+        width: 116px;
+        height: 136px;
+        margin-bottom: 8px;
+    }
+
+    .title {
+        font-weight: 700;
+        font-size: 36px;
+        text-align: center;
+        background: linear-gradient(90deg, #00FFF0 2.05%, #71BBFF 44.17%, #A056FF 87.91%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+.calc-area {
+    background: #252525;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 1px #00000018;
+
+    .carga-hor {
+        margin-bottom: 16px;
+
+        .input-content {
+            display: flex;
+            margin-top: 8px;
+
+            label {
+                font-size: 14px;
+                margin: 0 8px;
+                cursor: pointer;
+            }
+
+            .checkbox-styled {
+                input {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .autocomplete-content {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+
+        label {
+            margin-left: 8px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .checkbox-styled {
+            input {
+                display: none;
+            }
+        }
+    }
+}

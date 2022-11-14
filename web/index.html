@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <script src="scripts/script.js"></script>
+    <title>Calculo de horas de trabalho</title>
+</head>
+<body>
+    <main>
+        <div class="title-content">
+            <img class="icon-timer" src="resources/icon-timer.svg" alt="Ícone temporizador">
+            <h1 class="title">CALCULE SUAS HORAS DE TRABALHO</h1>
+        </div>
+        <div class="calc-area">
+            <div class="carga-hor">
+                <span class="text-question">Qual é a sua carga horária?</span>
+                <div class="input-content">
+                    <div class="checkbox-styled sixhours">
+                        <input type="radio" name="hours" id="six-hours">
+                    </div>
+                    <label for="six-hours">6:00</label>
+                    <div class="checkbox-styled eighthours">
+                        <input type="radio" name="hours" id="eight-hours">
+                    </div>
+                    <label for="eight-hours">8:48</label>
+                </div>
+            </div>
+
+            <div class="autocomplete-content">
+                <div class="checkbox-styled">
+                    <input id="autocomplete" name="autocomplete" type="checkbox"> 
+                </div>
+                <label for="autocomplete">Deseja preencher a saída automaticamente?</label>
+            </div>
+
+            <div class="horarios">
+                <span class="text-question">Digite seus horários:</span>
+                <div class="inputs-horarios">
+                    <div class="entrada">
+                        <label for="entrada1">Entrada:</label>
+                        <div class="input-timer">
+                            <input id="entrada1" name="entrada1" type="text" placeholder="00:00">
+                        </div>
+                    </div>
+                    <div class="saida">
+                        <label for="saida1">Saída:</label>
+                        <div class="input-timer">
+                            <input id="saida1" name="saida1" type="text" placeholder="00:00">
+                        </div>
+                    </div>
+                    <div class="entrada">
+                        <label for="entrada2">Entrada:</label>
+                        <div class="input-timer">
+                            <input id="entrada2" name="entrada2" type="text" placeholder="00:00">
+                        </div>
+                    </div>
+                    <div class="saida">
+                        <label for="saida2">Saída:</label>
+                        <div class="input-timer">
+                            <input id="saida2" name="saida2" type="text" placeholder="00:00">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="banco-horas">
+                <div class="checkbox-banco">
+                    <input class="checkbox-styled" id="calc-banco-horas" name="calc-banco-horas" type="checkbox">
+                    <label for="calc-banco-horas">Deseja calcular de acordo com seu saldo no banco de horas?</label>
+                </div>
+
+                <div class="banco-horas">
+                    <div class="saldo-usuario">
+                        <label for="saldo">Qual seu saldo do banco de horas?</label>
+                        <input id="saldo" name="saldo" type="text">
+                    </div>
+
+                    <div class="saldo-calculado">
+                        <span class="saldo-resultado"></span>
+                        <span class="mais-menos"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
