@@ -23,7 +23,7 @@ body {
   cursor: pointer;
 }
 .checkbox-styled.checked {
-  background-image: url(/web/resources/Check.svg);
+  background-image: url(../resources/Check.svg);
 }
 
 .text-question {
