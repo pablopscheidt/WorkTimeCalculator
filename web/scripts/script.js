@@ -24,13 +24,4 @@ $(document).ready(function() {
             $('.meu-banco-horas').animate({ "height": "0" }, "slow" )
         }
     })
-
-    // Inputmask.extendDefinitions({
-    //     '00': {
-    //         validator: "/[0-23]/",
-    //     },
-    //     '11': {
-    //         validator: "/[0-59]/",
-    //     }
-    // });
 });
