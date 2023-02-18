@@ -5,8 +5,12 @@
     text-decoration: none;
 }
 
-body {
+body,
+input {
     font-family: 'Poppins', sans-serif;
+}
+
+body {
     background: #1e1e1e;
     display: flex;
     align-items: center;
@@ -25,11 +29,17 @@ body {
     &.checked {
         background-image: url(../resources/Check.svg);
     }
+
+    input {
+        display: none;
+    }
 }
 
 .text-question {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff;
 }
 
 .title-content {
@@ -59,14 +69,16 @@ body {
 
 .calc-area {
     background: #252525;
-    color: #fff;
-    padding: 16px;
+    color: #bdbdbd;
+    padding: 32px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px 1px #00000018;
 
-    .carga-hor {
-        margin-bottom: 16px;
+    > div {
+        margin: 16px 0;
+    }
 
+    .carga-hor {
         .input-content {
             display: flex;
             margin-top: 8px;
@@ -76,16 +88,60 @@ body {
                 margin: 0 8px;
                 cursor: pointer;
             }
+        }
+    }
 
-            .checkbox-styled {
+    .autocomplete-content {
+        display: flex;
+        align-items: center;
+        
+        label {
+            margin-left: 8px;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+    }
+
+    .horarios {
+        .inputs-horarios {
+            display: flex;
+
+            label {
+                font-size: 14px;
+            }
+
+            .input-timer {
+                display: flex;
+
                 input {
-                    display: none;
+                    background: #383a40;
+                    border: none;
+                    outline: none;
+                    border-radius: 4px;
+                    padding: 8px;
+                    color: #fff;
+                    max-width: 70px;
+                    text-align: center;
+                }
+                
+                &::after {
+                    content: ".";
+                    color: #fff;
+                    display: block;
+                    line-height: 50%;
+                    font-size: 30px;
+                    margin: 0 8px;
+                }
+
+                &.last::after {
+                    content: initial;
                 }
             }
         }
     }
 
-    .autocomplete-content {
+    .checkbox-banco {
         display: flex;
         align-items: center;
         margin-bottom: 16px;
@@ -94,11 +150,66 @@ body {
             margin-left: 8px;
             font-size: 14px;
             font-weight: 400;
+            cursor: pointer;
+        }
+    }
+
+    .meu-banco-horas {
+        position: relative;
+        height: 0;
+        transition: all 0.5s linear;
+        overflow: hidden;
+
+
+        .saldo-usuario {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                background: #383a40;
+                border: none;
+                outline: none;
+                border-radius: 4px;
+                padding: 8px;
+                color: #fff;
+                max-width: 70px;
+                text-align: center;
+                margin-top: 8px;
+            }
         }
 
-        .checkbox-styled {
-            input {
-                display: none;
+        .saldo-mais-menos {
+            position: absolute;
+            top: 35px;
+            left: 80px;
+            font-size: 15px;
+            letter-spacing: 1px;
+
+            &.mais {
+                color: #00FF85;
+            }
+
+            &.menos {
+                color: #FF003D;
+            }
+        }
+
+        .saldo-calculado {
+            display: flex;
+            flex-direction: column;
+            margin-top: 16px;
+
+            .saldo-resultado {
+                background: #383a40;
+                border: none;
+                outline: none;
+                border-radius: 4px;
+                padding: 8px;
+                color: #fff;
+                max-width: 70px;
+                text-align: center;
+                font-size: 13px;
+                margin-top: 8px;
             }
         }
     }

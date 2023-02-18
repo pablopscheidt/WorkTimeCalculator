@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="node_modules/inputmask/dist/jquery.inputmask.js"></script>
+    <script src="node_modules/inputmask/dist/bindings/inputmask.binding.js"></script>
     <title>Calculo de horas de trabalho</title>
 </head>
 <body>
@@ -27,7 +29,7 @@
                     </div>
                     <label for="six-hours">6:00</label>
                     <div class="checkbox-styled eighthours">
-                        <input type="radio" name="hours" id="eight-hours">
+                        <input type="radio" name="hours" id="eight-hours" checked>
                     </div>
                     <label for="eight-hours">8:48</label>
                 </div>
@@ -46,25 +48,25 @@
                     <div class="entrada">
                         <label for="entrada1">Entrada:</label>
                         <div class="input-timer">
-                            <input id="entrada1" name="entrada1" type="text" placeholder="00:00">
+                            <input id="entrada1" name="entrada1" type="text" placeholder="00:00" alias="aa" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
                     <div class="saida">
                         <label for="saida1">Saída:</label>
                         <div class="input-timer">
-                            <input id="saida1" name="saida1" type="text" placeholder="00:00">
+                            <input id="saida1" name="saida1" type="text" placeholder="00:00" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
                     <div class="entrada">
                         <label for="entrada2">Entrada:</label>
                         <div class="input-timer">
-                            <input id="entrada2" name="entrada2" type="text" placeholder="00:00">
+                            <input id="entrada2" name="entrada2" type="text" placeholder="00:00" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
                     <div class="saida">
                         <label for="saida2">Saída:</label>
-                        <div class="input-timer">
-                            <input id="saida2" name="saida2" type="text" placeholder="00:00">
+                        <div class="input-timer last">
+                            <input id="saida2" name="saida2" type="text" placeholder="00:00" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
                 </div>
@@ -72,19 +74,23 @@
 
             <div class="banco-horas">
                 <div class="checkbox-banco">
-                    <input class="checkbox-styled" id="calc-banco-horas" name="calc-banco-horas" type="checkbox">
+                    <div class="checkbox-styled">
+                        <input id="calc-banco-horas" name="calc-banco-horas" type="checkbox">
+                    </div>
                     <label for="calc-banco-horas">Deseja calcular de acordo com seu saldo no banco de horas?</label>
                 </div>
 
-                <div class="banco-horas">
+                <div class="meu-banco-horas">
                     <div class="saldo-usuario">
-                        <label for="saldo">Qual seu saldo do banco de horas?</label>
-                        <input id="saldo" name="saldo" type="text">
+                        <label for="saldo" class="text-question">Qual seu saldo do banco de horas?</label>
+                        <input id="saldo" name="saldo" placeholder="00:00" type="text" data-inputmask="'mask': '99:99'">
                     </div>
+                    
+                    <span class="saldo-mais-menos mais">+0:15</span>
 
                     <div class="saldo-calculado">
-                        <span class="saldo-resultado"></span>
-                        <span class="mais-menos"></span>
+                        <span class="text-question">Novo saldo:</span>
+                        <div class="saldo-resultado">00:00</div>
                     </div>
                 </div>
             </div>

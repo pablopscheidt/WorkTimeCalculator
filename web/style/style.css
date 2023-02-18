@@ -5,8 +5,12 @@
   text-decoration: none;
 }
 
-body {
+body,
+input {
   font-family: "Poppins", sans-serif;
+}
+
+body {
   background: #1e1e1e;
   display: flex;
   align-items: center;
@@ -25,10 +29,15 @@ body {
 .checkbox-styled.checked {
   background-image: url(../resources/Check.svg);
 }
+.checkbox-styled input {
+  display: none;
+}
 
 .text-question {
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #fff;
 }
 
 .title-content {
@@ -56,13 +65,13 @@ body {
 
 .calc-area {
   background: #252525;
-  color: #fff;
-  padding: 16px;
+  color: #bdbdbd;
+  padding: 32px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.0941176471);
 }
-.calc-area .carga-hor {
-  margin-bottom: 16px;
+.calc-area > div {
+  margin: 16px 0;
 }
 .calc-area .carga-hor .input-content {
   display: flex;
@@ -73,19 +82,105 @@ body {
   margin: 0 8px;
   cursor: pointer;
 }
-.calc-area .carga-hor .input-content .checkbox-styled input {
-  display: none;
-}
 .calc-area .autocomplete-content {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
 }
 .calc-area .autocomplete-content label {
   margin-left: 8px;
   font-size: 14px;
   font-weight: 400;
+  cursor: pointer;
 }
-.calc-area .autocomplete-content .checkbox-styled input {
-  display: none;
+.calc-area .horarios .inputs-horarios {
+  display: flex;
+}
+.calc-area .horarios .inputs-horarios label {
+  font-size: 14px;
+}
+.calc-area .horarios .inputs-horarios .input-timer {
+  display: flex;
+}
+.calc-area .horarios .inputs-horarios .input-timer input {
+  background: #383a40;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  padding: 8px;
+  color: #fff;
+  max-width: 70px;
+  text-align: center;
+}
+.calc-area .horarios .inputs-horarios .input-timer::after {
+  content: ".";
+  color: #fff;
+  display: block;
+  line-height: 50%;
+  font-size: 30px;
+  margin: 0 8px;
+}
+.calc-area .horarios .inputs-horarios .input-timer.last::after {
+  content: initial;
+}
+.calc-area .checkbox-banco {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.calc-area .checkbox-banco label {
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+.calc-area .meu-banco-horas {
+  position: relative;
+  height: 0;
+  transition: all 0.5s linear;
+  overflow: hidden;
+}
+.calc-area .meu-banco-horas .saldo-usuario {
+  display: flex;
+  flex-direction: column;
+}
+.calc-area .meu-banco-horas .saldo-usuario input {
+  background: #383a40;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  padding: 8px;
+  color: #fff;
+  max-width: 70px;
+  text-align: center;
+  margin-top: 8px;
+}
+.calc-area .meu-banco-horas .saldo-mais-menos {
+  position: absolute;
+  top: 35px;
+  left: 80px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.calc-area .meu-banco-horas .saldo-mais-menos.mais {
+  color: #00FF85;
+}
+.calc-area .meu-banco-horas .saldo-mais-menos.menos {
+  color: #FF003D;
+}
+.calc-area .meu-banco-horas .saldo-calculado {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+.calc-area .meu-banco-horas .saldo-calculado .saldo-resultado {
+  background: #383a40;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  padding: 8px;
+  color: #fff;
+  max-width: 70px;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 8px;
 }/*# sourceMappingURL=style.css.map */
