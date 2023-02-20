@@ -183,4 +183,15 @@ body {
   text-align: center;
   font-size: 13px;
   margin-top: 8px;
+}
+.calc-area .resultadoTotalHoras {
+  background: #9f74ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 45px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 32px auto 0;
 }/*# sourceMappingURL=style.css.map */
