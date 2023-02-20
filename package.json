@@ -1,5 +1,5 @@
 {
-  "devDependencies": {
-    "inputmask": "^5.0.7"
+  "dependencies": {
+    "inputmask": "^5.0.8-beta.72"
   }
 }
