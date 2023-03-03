@@ -105,6 +105,18 @@ $(document).ready(function() {
             let ms2 = (`00${minutoSaida}`).slice(-2);
             
             $('#saida2').val(`${hs2}:${ms2}`);
+
+            let secondHalf = minutoTotalSaida - minESecondHalf;
+
+            let minuto = (secondHalf + firstHalf)%60;
+            let hora = ((secondHalf + firstHalf) - minuto)/60;
+            hora = (`00${hora}`).slice(-2);
+            minuto = (`00${minuto}`).slice(-2);
+            let resultado = (`${hora}:${minuto}`)
+            
+            if (resultado != 'aN:aN') {
+                $('.resultadoTotalHoras .resultado').text(resultado);
+            }
         }
     }
 
