@@ -27,6 +27,15 @@ $(document).ready(function() {
         }
     })
 
+    //Passar para o proximo input quando preenchido
+    var inputs = $('.input-timer input');
+    inputs.on('keyup', function(e) {
+        if ($(this).val().replace(/[^0-9]/g,'').length === 4) {
+          var index = inputs.index(this);
+          inputs.eq(index + 1).focus();
+        }
+    });
+
    // Aqui começa os scripts para calcular
     let cargaHoraria = 528;
     $('.carga-hor input').on('change', function() {
@@ -128,7 +137,6 @@ $(document).ready(function() {
     //Completar com dois zeros no final caso digite apenas as horas nos inputs
     $('.inputs-horarios input').on('focusout', function() {
         // Verifica se o valor contém apenas duas posições
-        console.log($(this).val().replace(/[^0-9]/g,'').length)
         if ($(this).val().replace(/[^0-9]/g,'').length == 2) {
             // Adiciona "00" ao final do valor
             let newValue = $(this).val().replace(/[^0-9]/g,'') + ":00";

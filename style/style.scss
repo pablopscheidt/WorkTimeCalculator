@@ -1,3 +1,8 @@
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$extra-large: 1200px;
+
 * {
     margin: 0;
     padding: 0;
@@ -15,12 +20,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 .checkbox-styled {
     width: 20px;
+    min-width: 20px;
     height: 20px;
     background: #383A40;
     border-radius: 4px;
@@ -40,6 +55,10 @@ body {
     font-weight: 400;
     letter-spacing: 1px;
     color: #fff;
+
+    @media screen and (max-width: $small) {
+        font-size: 13px;
+    }
 }
 
 .title-content {
@@ -65,6 +84,19 @@ body {
         -webkit-text-fill-color: transparent;
         background-clip: text;
     }
+
+    @media screen and (max-width: $small) {
+        .icon-timer {
+            width: 60px;
+            height: 70px;
+            margin-top: 24px;
+        }
+
+        .title {
+            font-size: 24px;
+            margin: 0 16px;
+        }
+    }
 }
 
 .calc-area {
@@ -73,6 +105,13 @@ body {
     padding: 32px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px 1px #00000018;
+    max-width: fit-content;
+
+    @media screen and (max-width: $small) {
+        padding: 16px;
+        background: none;
+        box-shadow: none;
+    }
 
     > div {
         margin: 16px 0;
@@ -107,6 +146,19 @@ body {
         .inputs-horarios {
             display: flex;
 
+            @media screen and (max-width: $small) {
+                display: grid;
+                grid-template-columns: repeat(2, 40%);
+                grid-template-rows: repeat(2, auto);
+                grid-column-gap: 10%;
+                grid-row-gap: 0px;
+                justify-content: center;
+
+                .input-timer::after {
+                    content: initial !important;
+                }
+            }
+
             label {
                 font-size: 14px;
             }
@@ -123,6 +175,11 @@ body {
                     color: #fff;
                     max-width: 70px;
                     text-align: center;
+
+                    @media screen and (max-width: $small) {
+                        width: 100%;
+                        max-width: 100%;
+                    }
                 }
                 
                 &::after {
@@ -132,6 +189,7 @@ body {
                     line-height: 50%;
                     font-size: 30px;
                     margin: 0 8px;
+                    
                 }
 
                 &.last::after {
