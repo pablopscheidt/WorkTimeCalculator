@@ -70,14 +70,14 @@ body {
     max-width: 433px;
 
     .icon-timer {
-        width: 116px;
-        height: 136px;
+        width: 68px;
+        height: 70px;
         margin-bottom: 8px;
     }
 
     .title {
         font-weight: 700;
-        font-size: 36px;
+        font-size: 30px;
         text-align: center;
         background: linear-gradient(90deg, #00FFF0 2.05%, #71BBFF 44.17%, #A056FF 87.91%);
         -webkit-background-clip: text;
@@ -87,8 +87,6 @@ body {
 
     @media screen and (max-width: $small) {
         .icon-timer {
-            width: 60px;
-            height: 70px;
             margin-top: 24px;
         }
 
