@@ -104,6 +104,7 @@ body {
     border-radius: 8px;
     box-shadow: 0px 0px 10px 1px #00000018;
     max-width: fit-content;
+    max-width: 530px;
 
     @media screen and (max-width: $small) {
         padding: 16px;
@@ -112,7 +113,7 @@ body {
     }
 
     > div {
-        margin: 16px 0;
+        margin: 24px 0;
     }
 
     .carga-hor {
@@ -122,7 +123,7 @@ body {
 
             label {
                 font-size: 14px;
-                margin: 0 8px;
+                margin: 0 16px 0 8px;
                 cursor: pointer;
             }
         }
@@ -171,7 +172,7 @@ body {
                     border-radius: 4px;
                     padding: 8px;
                     color: #fff;
-                    max-width: 70px;
+                    width: 100%;
                     text-align: center;
 
                     @media screen and (max-width: $small) {

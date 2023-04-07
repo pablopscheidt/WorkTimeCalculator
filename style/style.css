@@ -63,13 +63,13 @@ body main {
   max-width: 433px;
 }
 .title-content .icon-timer {
-  width: 116px;
-  height: 136px;
+  width: 68px;
+  height: 70px;
   margin-bottom: 8px;
 }
 .title-content .title {
   font-weight: 700;
-  font-size: 36px;
+  font-size: 30px;
   text-align: center;
   background: linear-gradient(90deg, #00FFF0 2.05%, #71BBFF 44.17%, #A056FF 87.91%);
   -webkit-background-clip: text;
@@ -78,8 +78,6 @@ body main {
 }
 @media screen and (max-width: 576px) {
   .title-content .icon-timer {
-    width: 60px;
-    height: 70px;
     margin-top: 24px;
   }
   .title-content .title {
@@ -96,6 +94,7 @@ body main {
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.0941176471);
   max-width: -moz-fit-content;
   max-width: fit-content;
+  max-width: 530px;
 }
 @media screen and (max-width: 576px) {
   .calc-area {
@@ -105,7 +104,7 @@ body main {
   }
 }
 .calc-area > div {
-  margin: 16px 0;
+  margin: 24px 0;
 }
 .calc-area .carga-hor .input-content {
   display: flex;
@@ -113,7 +112,7 @@ body main {
 }
 .calc-area .carga-hor .input-content label {
   font-size: 14px;
-  margin: 0 8px;
+  margin: 0 16px 0 8px;
   cursor: pointer;
 }
 .calc-area .autocomplete-content {
@@ -155,7 +154,7 @@ body main {
   border-radius: 4px;
   padding: 8px;
   color: #fff;
-  max-width: 70px;
+  width: 100%;
   text-align: center;
 }
 @media screen and (max-width: 576px) {
