@@ -15,6 +15,9 @@ html[data-theme=dark] {
   --text-principal: #fff;
   --text-secundario: #bdbdbd;
 }
+html[data-theme=dark] .checkbox-styled.checked {
+  background-image: url(../resources/Check.svg);
+}
 
 * {
   margin: 0;
@@ -55,7 +58,7 @@ body main {
   transition: background-color 0.3s linear;
 }
 .checkbox-styled.checked {
-  background-image: url(../resources/Check.svg);
+  background-image: url(../resources/Check_light.svg);
 }
 .checkbox-styled input {
   display: none;

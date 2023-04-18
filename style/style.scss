@@ -19,6 +19,10 @@ html[data-theme='dark'] {
     --input-color: #383A40;
     --text-principal: #fff;
     --text-secundario: #bdbdbd;
+
+    .checkbox-styled.checked {
+        background-image: url(../resources/Check.svg);
+    }
 }
 
 * {
@@ -61,7 +65,7 @@ body {
     transition: background-color 0.3s linear;
 
     &.checked {
-        background-image: url(../resources/Check.svg);
+        background-image: url(../resources/Check_light.svg);
     }
 
     input {
