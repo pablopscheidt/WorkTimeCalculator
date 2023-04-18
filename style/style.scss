@@ -3,6 +3,24 @@ $medium: 768px;
 $large: 992px;
 $extra-large: 1200px;
 
+:root {
+    --bg-color: #F8F9FA;
+    --bg-modal: #E9ECEF;
+    --bg-gradient-title: #A056FF;
+    --input-color: #DEE2E6;
+    --text-principal: #000;
+    --text-secundario: #343A40;
+}
+
+html[data-theme='dark'] {
+    --bg-color: #1e1e1e;
+    --bg-modal: #252525;
+    --bg-gradient-title: linear-gradient(90deg, #00FFF0 2.05%, #71BBFF 44.17%, #A056FF 87.91%);
+    --input-color: #383A40;
+    --text-principal: #fff;
+    --text-secundario: #bdbdbd;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +34,7 @@ input {
 }
 
 body {
-    background: #1e1e1e;
+    background: var(--bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,9 +55,10 @@ body {
     width: 20px;
     min-width: 20px;
     height: 20px;
-    background: #383A40;
+    background: var(--input-color);
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s linear;
 
     &.checked {
         background-image: url(../resources/Check.svg);
@@ -54,7 +73,8 @@ body {
     font-size: 15px;
     font-weight: 400;
     letter-spacing: 1px;
-    color: #fff;
+    color: var(--text-principal);
+    transition: color 0.3s linear;
 
     @media screen and (max-width: $small) {
         font-size: 13px;
@@ -79,10 +99,12 @@ body {
         font-weight: 700;
         font-size: 30px;
         text-align: center;
-        background: linear-gradient(90deg, #00FFF0 2.05%, #71BBFF 44.17%, #A056FF 87.91%);
+        background: var(--bg-gradient-title);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        transition: background-color 0.3s linear;
+
     }
 
     @media screen and (max-width: $small) {
@@ -98,13 +120,13 @@ body {
 }
 
 .calc-area {
-    background: #252525;
-    color: #bdbdbd;
+    background: var(--bg-modal);
+    color: var(--text-secundario);
     padding: 32px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px 1px #00000018;
     max-width: fit-content;
     max-width: 530px;
+    transition: all 0.3s linear;
 
     @media screen and (max-width: $small) {
         padding: 16px;
@@ -166,14 +188,15 @@ body {
                 display: flex;
 
                 input {
-                    background: #383a40;
+                    background: var(--input-color);
                     border: none;
                     outline: none;
                     border-radius: 4px;
                     padding: 8px;
-                    color: #fff;
+                    color: var(--text-principal);
                     width: 100%;
                     text-align: center;
+                    transition: all 0.3s linear;
 
                     @media screen and (max-width: $small) {
                         width: 100%;
@@ -183,11 +206,13 @@ body {
                 
                 &::after {
                     content: ".";
-                    color: #fff;
+                    color: var(--text-principal);
                     display: block;
                     line-height: 50%;
                     font-size: 30px;
                     margin: 0 8px;
+                    transition: color 0.3s linear;
+
                     
                 }
 
@@ -223,15 +248,16 @@ body {
             flex-direction: column;
 
             input {
-                background: #383a40;
+                background: var(--input-color);
                 border: none;
                 outline: none;
                 border-radius: 4px;
                 padding: 8px;
-                color: #fff;
+                color: var(--text-principal);
                 max-width: 70px;
                 text-align: center;
                 margin-top: 8px;
+                transition: all 0.3s linear;
             }
         }
 
@@ -257,16 +283,17 @@ body {
             margin-top: 16px;
 
             .saldo-resultado {
-                background: #383a40;
+                background: var(--input-color);
                 border: none;
                 outline: none;
                 border-radius: 4px;
                 padding: 8px;
-                color: #fff;
+                color: var(--text-principal);
                 max-width: 70px;
                 text-align: center;
                 font-size: 13px;
                 margin-top: 8px;
+                transition: all 0.3s linear;
             }
         }
     }
@@ -282,5 +309,62 @@ body {
         border-radius: 4px;
         font-weight: 600;
         margin: 32px auto 0;
+    }
+}
+
+//dark-theme
+
+.switch {
+  display: block;
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  --size-of-icon: 1.4em;
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon,1.4em);
+  width: var(--size-of-icon,1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset,0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg,#ff0080,#ff8c00 70%);
+  ;
+ transition: .4s;
+}
+
+html[data-theme='dark'] {
+    .slider {
+      background-color: #303136;
+    }
+    
+    .slider:before {
+      left: calc(100% - (var(--size-of-icon,1.4em) + var(--slider-offset,0.3em)));
+      background: #303136;
+      box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
     }
 }
