@@ -23,6 +23,10 @@ html[data-theme='dark'] {
     .checkbox-styled.checked {
         background-image: url(../resources/Check.svg);
     }
+
+    .gb-logo {
+        filter: invert(1);
+    }
 }
 
 * {
@@ -124,9 +128,13 @@ body {
 }
 
 .calc-area {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     background: var(--bg-modal);
     color: var(--text-secundario);
     padding: 32px;
+    gap: 24px;
     border-radius: 8px;
     max-width: fit-content;
     max-width: 530px;
@@ -138,8 +146,20 @@ body {
         box-shadow: none;
     }
 
-    > div {
-        margin: 24px 0;
+    .gb-logo {
+        background: url(../resources/gb-logo.svg);
+        background-size: contain;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        transition: all 0.3s linear;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
     }
 
     .carga-hor {
@@ -319,14 +339,16 @@ body {
 //dark-theme
 
 .switch {
-  display: block;
-  --width-of-switch: 3.5em;
-  --height-of-switch: 2em;
-  --size-of-icon: 1.4em;
-  --slider-offset: 0.3em;
-  position: relative;
-  width: var(--width-of-switch);
-  height: var(--height-of-switch);
+    display: block;
+    --width-of-switch: 3.5em;
+    --height-of-switch: 2em;
+    --size-of-icon: 1.4em;
+    --slider-offset: 0.3em;
+    width: var(--width-of-switch);
+    height: var(--height-of-switch);
+    position: absolute;
+    top: 24px;
+    right: 24px;
 }
 
 .switch input {
