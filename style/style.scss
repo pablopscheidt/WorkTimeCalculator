@@ -291,6 +291,7 @@ body {
             left: 80px;
             font-size: 15px;
             letter-spacing: 1px;
+            display: none;
 
             &.mais {
                 color: #00FF85;
@@ -364,7 +365,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #f4f4f5;
+  background-color: #fff;
   transition: .4s;
   border-radius: 30px;
 }
