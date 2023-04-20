@@ -267,6 +267,11 @@ body main {
   color: #FF003D;
   display: flex;
 }
+.calc-area .meu-banco-horas .saldo-mais-menos.tolerancia {
+  color: #727b85;
+  display: flex;
+  font-size: 13px;
+}
 .calc-area .meu-banco-horas .button-add-horas {
   margin-top: 16px;
   padding: 8px 16px;

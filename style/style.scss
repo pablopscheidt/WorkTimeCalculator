@@ -302,6 +302,12 @@ body {
                 color: #FF003D;
                 display: flex;
             }
+
+            &.tolerancia {
+                color: #727b85;
+                display: flex;
+                font-size: 13px;
+            }
         }
 
         .button-add-horas {

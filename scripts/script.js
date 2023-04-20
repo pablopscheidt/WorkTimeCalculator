@@ -8,6 +8,7 @@ $(document).ready(function() {
         if ($(this).children().is(':checked')) {
             $(this).addClass('checked')
         }
+        calculaSaldo()
     })
 
     $('.autocomplete-content .checkbox-styled').on('click', function() {
@@ -118,9 +119,17 @@ $(document).ready(function() {
         }
     }
 
-    $('.inputs-horarios input').on('keyup focusout', function() {
+    $('.inputs-horarios input').on('keyup blur', function() {
         completaAutomatico();
         calculoHoras()
+        
+        for (var i = 0; i < 4; i++) {
+            if ($('.inputs-horarios input')[i].value.replace(/[^0-9]/g,'').length < 4) {
+                return false;
+            }
+        }
+        return calculaSaldo()
+        
     });
 
     //Completar com dois zeros no final caso digite apenas as horas nos inputs
@@ -139,7 +148,7 @@ $(document).ready(function() {
     const inputSaldo = $('input#saldo');
 
     function validaSaldoPreenchido(btn, inputSaldo){
-        if (inputSaldo.val().replace(/[^0-9]/g,'').length === 4) {
+        if ((inputSaldo.val().replace(/[^0-9]/g,'').length === 4)) {
             btn.show()
         } else {
             btn.hide() 
@@ -163,21 +172,28 @@ $(document).ready(function() {
         let mPosNeg = horasPosNeg%60
         let hPosNeg = (horasPosNeg - mPosNeg)/60
         mPosNeg = (`00${mPosNeg}`).slice(-2);
-        hPosNeg = (`00${hPosNeg}`).slice(-2);
+        hPosNeg = (`00${Math.abs(hPosNeg)}`).slice(-2);
 
         if (horasPosNeg > 10) {
             $('.saldo-mais-menos').text(`+${hPosNeg}:${mPosNeg}`).addClass('mais')
+            $('.saldo-mais-menos').removeClass('menos')
+            $('.saldo-mais-menos').removeClass('tolerancia')
         } else {
             if (horasPosNeg <= 10 && horasPosNeg >= -10) {
-                $('.saldo-mais-menos').text('Você está nos 10 minutos de tolerância.').addClass('tolerancia')
+                $('.saldo-mais-menos').text('Você está nos 10 minutos de tolerância.').addClass('tolerancia')                
+                $('.saldo-mais-menos').removeClass('menos')
+                $('.saldo-mais-menos').removeClass('mais')
+
             } else if (horasPosNeg < -10) {
                 $('.saldo-mais-menos').text(`-${hPosNeg}:${mPosNeg}`).addClass('menos')
+                $('.saldo-mais-menos').removeClass('tolerancia')
+                $('.saldo-mais-menos').removeClass('mais')
             } else {
                 $('.saldo-mais-menos').removeClass('menos')
                 $('.saldo-mais-menos').removeClass('mais')
+                $('.saldo-mais-menos').removeClass('tolerancia')
             }
         }
-        debugger
     }
 
     // Animação para abrir o banco de horas
@@ -194,7 +210,6 @@ $(document).ready(function() {
 
     inputSaldo.on('keyup', function(){
         validaSaldoPreenchido(btnSalvar, $(this));
-        calculaSaldo()
     })
     
 })
