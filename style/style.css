@@ -1,6 +1,6 @@
 :root {
-  --bg-color: #F8F9FA;
-  --bg-modal: #E9ECEF;
+  --bg-color: #E9ECEF;
+  --bg-modal: #F8F9FA;
   --bg-gradient-title: #A056FF;
   --input-color: #DEE2E6;
   --text-principal: #000;
@@ -253,7 +253,7 @@ body main {
 }
 .calc-area .meu-banco-horas .saldo-mais-menos {
   position: absolute;
-  top: 35px;
+  top: 38px;
   left: 80px;
   font-size: 15px;
   letter-spacing: 1px;
@@ -261,27 +261,26 @@ body main {
 }
 .calc-area .meu-banco-horas .saldo-mais-menos.mais {
   color: #00FF85;
+  display: flex;
 }
 .calc-area .meu-banco-horas .saldo-mais-menos.menos {
   color: #FF003D;
-}
-.calc-area .meu-banco-horas .saldo-calculado {
   display: flex;
-  flex-direction: column;
-  margin-top: 16px;
 }
-.calc-area .meu-banco-horas .saldo-calculado .saldo-resultado {
-  background: var(--input-color);
-  border: none;
-  outline: none;
+.calc-area .meu-banco-horas .button-add-horas {
+  margin-top: 16px;
+  padding: 8px 16px;
   border-radius: 4px;
-  padding: 8px;
-  color: var(--text-principal);
-  max-width: 70px;
-  text-align: center;
-  font-size: 13px;
-  margin-top: 8px;
-  transition: all 0.3s linear;
+  border: none;
+  background: #a961ff;
+  color: #fff;
+  font-family: poppins;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.3s linear;
+}
+.calc-area .meu-banco-horas .button-add-horas:hover {
+  background: #7c49bb;
 }
 .calc-area .resultadoTotalHoras {
   background: #a961ff;
@@ -323,6 +322,7 @@ body main {
   right: 0;
   bottom: 0;
   background-color: #fff;
+  border: 1px solid #ddd;
   transition: 0.4s;
   border-radius: 30px;
 }
@@ -342,6 +342,7 @@ body main {
 
 html[data-theme=dark] .slider {
   background-color: #303136;
+  border: none;
 }
 html[data-theme=dark] .slider:before {
   left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));

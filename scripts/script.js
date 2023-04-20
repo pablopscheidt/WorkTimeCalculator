@@ -16,17 +16,6 @@ $(document).ready(function() {
         completaAutomatico();
     })
 
-    // Animação para abrir o banco de horas
-    $('.banco-horas .checkbox-banco .checkbox-styled').on('click', function() {
-        $(this).next('label').click();
-        $(this).toggleClass('checked');
-        if ($(this).hasClass('checked')) {
-            $('.meu-banco-horas').animate({ "height": "150" }, 100 )
-        } else {
-            $('.meu-banco-horas').animate({ "height": "0" }, 100 )
-        }
-    })
-
     //Passar para o proximo input quando preenchido
     var inputs = $('.input-timer input');
     inputs.on('keyup', function(e) {
@@ -142,6 +131,70 @@ $(document).ready(function() {
             let newValue = $(this).val().replace(/[^0-9]/g,'') + ":00";
             // Atualiza o valor do input
             $(this).val(newValue);
+            calculoHoras()
         }
     });
-});
+
+    const btnSalvar = $('.button-add-horas')
+    const inputSaldo = $('input#saldo');
+
+    function validaSaldoPreenchido(btn, inputSaldo){
+        if (inputSaldo.val().replace(/[^0-9]/g,'').length === 4) {
+            btn.show()
+        } else {
+            btn.hide() 
+        }
+    }
+
+    function calculaSaldo() {
+        let resultadoHoras = $('.resultadoTotalHoras .resultado').text().split(':')
+        let h = parseInt(resultadoHoras[0]*60)
+        let m = parseInt(resultadoHoras[1])
+        resultadoHoras = h+m
+
+        let cargaHoraria = 528;
+        if ($('#six-hours').is(':checked')) {
+            cargaHoraria = 360; //6:00
+        } else {
+            cargaHoraria = 528; //8:48
+        }
+
+        let horasPosNeg = resultadoHoras - cargaHoraria
+        let mPosNeg = horasPosNeg%60
+        let hPosNeg = (horasPosNeg - mPosNeg)/60
+        mPosNeg = (`00${mPosNeg}`).slice(-2);
+        hPosNeg = (`00${hPosNeg}`).slice(-2);
+
+        if (horasPosNeg > 10) {
+            $('.saldo-mais-menos').text(`+${hPosNeg}:${mPosNeg}`).addClass('mais')
+        } else {
+            if (horasPosNeg <= 10 && horasPosNeg >= -10) {
+                $('.saldo-mais-menos').text('Você está nos 10 minutos de tolerância.').addClass('tolerancia')
+            } else if (horasPosNeg < -10) {
+                $('.saldo-mais-menos').text(`-${hPosNeg}:${mPosNeg}`).addClass('menos')
+            } else {
+                $('.saldo-mais-menos').removeClass('menos')
+                $('.saldo-mais-menos').removeClass('mais')
+            }
+        }
+        debugger
+    }
+
+    // Animação para abrir o banco de horas
+    $('.banco-horas .checkbox-banco .checkbox-styled').on('click', function() {
+        $(this).next('label').click();
+        $(this).toggleClass('checked');
+        if ($(this).hasClass('checked')) {
+            validaSaldoPreenchido(btnSalvar, inputSaldo)
+            $('.meu-banco-horas').animate({ "height": "150" }, 100 )
+        } else {
+            $('.meu-banco-horas').animate({ "height": "0" }, 100 )
+        }
+    })
+
+    inputSaldo.on('keyup', function(){
+        validaSaldoPreenchido(btnSalvar, $(this));
+        calculaSaldo()
+    })
+    
+})
