@@ -2,15 +2,6 @@ $(document).ready(function() {
     // script para o checkbox personalizado realizar a função do check nativo.
     $('.carga-hor .checkbox-styled input[checked]').closest('.checkbox-styled').addClass('checked'); 
 
-    $('.carga-hor .checkbox-styled').on('click', function() {
-        $(this).next('label').click();
-        $('.carga-hor .checkbox-styled').removeClass('checked');
-        if ($(this).children().is(':checked')) {
-            $(this).addClass('checked')
-        }
-        calculaSaldo()
-    })
-
     $('.autocomplete-content .checkbox-styled').on('click', function() {
         $(this).next('label').click();
         $(this).toggleClass('checked');
@@ -119,19 +110,6 @@ $(document).ready(function() {
         }
     }
 
-    $('.inputs-horarios input').on('keyup blur', function() {
-        completaAutomatico();
-        calculoHoras()
-        
-        for (var i = 0; i < 4; i++) {
-            if ($('.inputs-horarios input')[i].value.replace(/[^0-9]/g,'').length < 4) {
-                return false;
-            }
-        }
-        return calculaSaldo()
-        
-    });
-
     //Completar com dois zeros no final caso digite apenas as horas nos inputs
     $('.inputs-horarios input').on('focusout', function() {
         // Verifica se o valor contém apenas duas posições
@@ -148,13 +126,14 @@ $(document).ready(function() {
     const inputSaldo = $('input#saldo');
 
     function validaSaldoPreenchido(btn, inputSaldo){
-        if ((inputSaldo.val().replace(/[^0-9]/g,'').length === 4)) {
+        if ((inputSaldo.val().replace(/[^0-9]/g,'').length === 4) && ($('.saldo-mais-menos').text() != "") && ($('.saldo-mais-menos').text() != "Você está nos 10 minutos de tolerância.")) {
             btn.show()
         } else {
             btn.hide() 
         }
     }
 
+    let horasPosNeg;
     function calculaSaldo() {
         let resultadoHoras = $('.resultadoTotalHoras .resultado').text().split(':')
         let h = parseInt(resultadoHoras[0]*60)
@@ -168,7 +147,7 @@ $(document).ready(function() {
             cargaHoraria = 528; //8:48
         }
 
-        let horasPosNeg = resultadoHoras - cargaHoraria
+        horasPosNeg = resultadoHoras - cargaHoraria
         let mPosNeg = horasPosNeg%60
         let hPosNeg = (horasPosNeg - mPosNeg)/60
         mPosNeg = (`00${mPosNeg}`).slice(-2);
@@ -195,6 +174,22 @@ $(document).ready(function() {
             }
         }
     }
+    function addHorasSaldo(){
+        let saldoBanco = inputSaldo.val().split(':')
+        let h = parseInt(saldoBanco[0]*60)
+        let m = parseInt(saldoBanco[1])
+        saldoBanco = (h+m) + horasPosNeg
+
+        m = saldoBanco%60
+        h = (saldoBanco - m)/60
+        m = (`00${m}`).slice(-2);
+        h = (`00${Math.abs(h)}`).slice(-2);
+        saldoBancoText = `${h}:${m}`;
+        inputSaldo.val(saldoBancoText)
+        localStorage.setItem("SaldoBancoHoras", saldoBancoText);
+    }
+
+    $('.button-add-horas').on('click', addHorasSaldo);
 
     // Animação para abrir o banco de horas
     $('.banco-horas .checkbox-banco .checkbox-styled').on('click', function() {
@@ -212,4 +207,48 @@ $(document).ready(function() {
         validaSaldoPreenchido(btnSalvar, $(this));
     })
     
+    $('.carga-hor .checkbox-styled').on('click', function() {
+        $(this).next('label').click();
+        $('.carga-hor .checkbox-styled').removeClass('checked');
+        if ($(this).children().is(':checked')) {
+            $(this).addClass('checked')
+        }
+        calculaSaldo()
+        validaSaldoPreenchido(btnSalvar, inputSaldo)
+    })
+
+    $('.inputs-horarios input').on('keyup blur', function() {
+        completaAutomatico();
+        calculoHoras()
+        validaSaldoPreenchido(btnSalvar, inputSaldo)
+        
+        for (var i = 0; i < 4; i++) {
+            if ($('.inputs-horarios input')[i].value.replace(/[^0-9]/g,'').length < 4) {
+                return false;
+            }
+        }
+        return calculaSaldo()
+        
+    });
+    
+    const saldoLocalStorage = localStorage.getItem("SaldoBancoHoras");
+
+    if (saldoLocalStorage != null && saldoLocalStorage !== undefined && saldoLocalStorage != "") {
+        inputSaldo.val(saldoLocalStorage);
+    }
+
+    $('.button-edit.edit-saldo').on('click', function(){
+        $(this).hide();
+        $('.button-edit.save-saldo').css('display', 'flex').show();
+        inputSaldo.prop('disabled', false);
+    })
+
+    $('.button-edit.save-saldo').on('click', function(){
+        if ((inputSaldo.val().replace(/[^0-9]/g,'').length === 4) || (inputSaldo.val().replace(/[^0-9]/g,'').length === 0)) {
+            $(this).hide();
+            $('.button-edit.edit-saldo').show();
+            inputSaldo.prop('disabled', true);
+            localStorage.setItem("SaldoBancoHoras", inputSaldo.val());
+        }
+    })
 })

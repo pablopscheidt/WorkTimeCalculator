@@ -15,7 +15,6 @@ let index = 1;
 function toggleTheme() {
     const savedTheme = localStorage.getItem('theme');
     let newTheme = savedTheme === 'light' ? 'dark' : 'light';
-    console.log(savedTheme, newTheme, index);
     index = index + 1;
 
     

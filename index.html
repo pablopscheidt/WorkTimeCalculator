@@ -91,12 +91,16 @@
                     <div class="ctn-saldo">
                         <div class="saldo-usuario">
                             <label for="saldo" class="text-question">Saldo do banco de horas</label>
-                            <input id="saldo" name="saldo" placeholder="00:00" type="text" data-inputmask="'mask': '99:99'">
+                            <div class="ctn-input-saldo">
+                                <div class="button-edit edit-saldo"><img src="resources/edit.svg" alt="Editar"></div>
+                                <div class="button-edit save-saldo"><img src="resources/save.svg" alt="Salvar"></div>
+                                <input id="saldo" name="saldo" placeholder="00:00" type="text" data-inputmask="'mask': '99:99'" disabled>
+                                <span class="saldo-mais-menos"></span>
+                            </div>
                         </div>
-                        <span class="saldo-mais-menos"></span>
                     </div>
                     
-                    <button class="button-add-horas" type="button" onclick="addHorasSaldo()">Atualizar Saldo</button>
+                    <button class="button-add-horas" type="button">Atualizar Saldo</button>
                 </div>
             </div>
             <div class="resultadoTotalHoras">
