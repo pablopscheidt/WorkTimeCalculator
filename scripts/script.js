@@ -8,6 +8,13 @@ $(document).ready(function() {
         completaAutomatico();
     })
 
+    $("input#saldo").inputmask("99:99", {
+        alias: "numeric",
+        placeholder: '',
+        allowPlus: false,
+        allowMinus: false
+    });
+
     //Passar para o proximo input quando preenchido
     var inputs = $('.input-timer input');
     inputs.on('keyup', function(e) {
@@ -134,6 +141,7 @@ $(document).ready(function() {
     }
 
     let horasPosNeg;
+    let isNegative;
     function calculaSaldo() {
         let resultadoHoras = $('.resultadoTotalHoras .resultado').text().split(':')
         let h = parseInt(resultadoHoras[0]*60)
@@ -148,32 +156,39 @@ $(document).ready(function() {
         }
 
         horasPosNeg = resultadoHoras - cargaHoraria
+        if (horasPosNeg < 0) {
+            isNegative = true;
+            horasPosNeg = horasPosNeg * -1;
+        } else {
+            isNegative = false;
+        }
         let mPosNeg = horasPosNeg%60
         let hPosNeg = (horasPosNeg - mPosNeg)/60
         mPosNeg = (`00${mPosNeg}`).slice(-2);
         hPosNeg = (`00${Math.abs(hPosNeg)}`).slice(-2);
 
-        if (horasPosNeg > 10) {
-            $('.saldo-mais-menos').text(`+${hPosNeg}:${mPosNeg}`).addClass('mais')
+        if (horasPosNeg <= 10) {
+            $('.saldo-mais-menos').text('Você está nos 10 minutos de tolerância.').addClass('tolerancia')                
             $('.saldo-mais-menos').removeClass('menos')
-            $('.saldo-mais-menos').removeClass('tolerancia')
+            $('.saldo-mais-menos').removeClass('mais')
         } else {
-            if (horasPosNeg <= 10 && horasPosNeg >= -10) {
-                $('.saldo-mais-menos').text('Você está nos 10 minutos de tolerância.').addClass('tolerancia')                
-                $('.saldo-mais-menos').removeClass('menos')
-                $('.saldo-mais-menos').removeClass('mais')
-
-            } else if (horasPosNeg < -10) {
+            if (isNegative == true) {
                 $('.saldo-mais-menos').text(`-${hPosNeg}:${mPosNeg}`).addClass('menos')
                 $('.saldo-mais-menos').removeClass('tolerancia')
                 $('.saldo-mais-menos').removeClass('mais')
+            } else if (horasPosNeg > 10) {
+                $('.saldo-mais-menos').text(`+${hPosNeg}:${mPosNeg}`).addClass('mais')
+                $('.saldo-mais-menos').removeClass('menos')
+                $('.saldo-mais-menos').removeClass('tolerancia')
             } else {
                 $('.saldo-mais-menos').removeClass('menos')
                 $('.saldo-mais-menos').removeClass('mais')
                 $('.saldo-mais-menos').removeClass('tolerancia')
+                $('.saldo-mais-menos').text('')
             }
         }
     }
+    
     function addHorasSaldo(){
         let saldoBanco = inputSaldo.val().split(':')
         let h = parseInt(saldoBanco[0]*60)
