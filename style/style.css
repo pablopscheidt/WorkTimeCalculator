@@ -258,26 +258,22 @@ body main {
 .calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo .button-edit:hover {
   background: #AA64F0;
 }
-.calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo .button-edit.save-saldo {
-  display: none;
-}
 .calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo .button-edit img {
   width: 16px;
   height: 16px;
 }
-.calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo input {
+.calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo input,
+.calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo #saldo {
   background: var(--input-color);
   border: none;
   outline: none;
+  font-size: 14px;
   border-radius: 0 4px 4px 0;
   padding: 8px;
   color: var(--text-principal);
   max-width: 70px;
   text-align: center;
   transition: all 0.3s linear;
-}
-.calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo input:disabled {
-  cursor: not-allowed;
 }
 .calc-area .meu-banco-horas .saldo-mais-menos {
   margin-left: 16px;
@@ -324,6 +320,15 @@ body main {
   border-radius: 4px;
   font-weight: 600;
   margin: 32px auto 0;
+}
+
+.button-save {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.button-save img {
+  margin-right: 8px;
 }
 
 .switch {

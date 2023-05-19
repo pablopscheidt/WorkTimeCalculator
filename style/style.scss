@@ -291,30 +291,24 @@ body {
                         background: #AA64F0;
                     }
 
-                    &.save-saldo {
-                        display: none;
-                    }
-
                     img {
                         width: 16px;
                         height: 16px;
                     }
                 }
 
-                input {
+                input,
+                #saldo {
                     background: var(--input-color);
                     border: none;
                     outline: none;
+                    font-size: 14px;
                     border-radius: 0 4px 4px 0;
                     padding: 8px;
                     color: var(--text-principal);
                     max-width: 70px;
                     text-align: center;
                     transition: all 0.3s linear;
-
-                    &:disabled {
-                        cursor: not-allowed;
-                    }
                 }
             }
 
@@ -372,6 +366,16 @@ body {
         border-radius: 4px;
         font-weight: 600;
         margin: 32px auto 0;
+    }
+}
+
+.button-save {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        margin-right: 8px;
     }
 }
 

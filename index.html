@@ -14,6 +14,7 @@
     <script src="scripts/themes.js"></script>
     <script src="inputmask/dist/jquery.inputmask.js"></script>
     <script src="inputmask/dist/bindings/inputmask.binding.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Calculo de horas de trabalho</title>
 </head>
 <body>
@@ -93,8 +94,7 @@
                             <label for="saldo" class="text-question">Saldo do banco de horas</label>
                             <div class="ctn-input-saldo">
                                 <div class="button-edit edit-saldo"><img src="resources/edit.svg" alt="Editar"></div>
-                                <div class="button-edit save-saldo"><img src="resources/save.svg" alt="Salvar"></div>
-                                <input id="saldo" name="saldo" placeholder="00:00" type="text" data-inputmask="'mask': '99:99'" disabled>
+                                <div id="saldo">00:00</div>
                                 <span class="saldo-mais-menos"></span>
                             </div>
                         </div>

@@ -211,7 +211,6 @@ $(document).ready(function() {
         $(this).next('label').click();
         $(this).toggleClass('checked');
         if ($(this).hasClass('checked')) {
-            validaSaldoPreenchido(btnSalvar, inputSaldo)
             $('.meu-banco-horas').animate({ "height": "150" }, 100 )
         } else {
             $('.meu-banco-horas').animate({ "height": "0" }, 100 )
@@ -253,9 +252,14 @@ $(document).ready(function() {
     }
 
     $('.button-edit.edit-saldo').on('click', function(){
-        $(this).hide();
-        $('.button-edit.save-saldo').css('display', 'flex').show();
-        inputSaldo.prop('disabled', false);
+        Swal.fire({
+            title: 'Meu saldo do banco de horas',
+            html: `<input id="saldo" name="saldo" placeholder="00:00" type="text" data-inputmask="'mask': '99:99'">`,
+            confirmButtonText: `<img src="resources/save.svg" alt="Salvar">`+'Salvar',
+            customClass: {
+                confirmButton: 'button-save',
+            }
+        })
     })
 
     $('.button-edit.save-saldo').on('click', function(){
