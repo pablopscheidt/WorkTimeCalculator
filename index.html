@@ -21,62 +21,72 @@
     <main>
         <div class="calc-area">
             <a href="https://github.com/pablopscheidt/WorkTimeCalculator" class="gb-logo" target="_blank" title="Projeto no GitHub"></a>
-            <label class="switch">
-                <input id="toggle-theme-button" type="checkbox">
-                <span class="slider"></span>
-            </label>
+            <div class="icon-gear"></div>
+            <div class="overflow"></div>
+            <div class="config-ctn">
+                <span class="triangle"></span>
+                <div class="carga-hor">
+                    <span class="text-question">Carga horária:</span>
+                    <div class="input-content">
+                        <div class="checkbox-styled sixhours">
+                            <input type="radio" name="hours" id="six-hours">
+                        </div>
+                        <label for="six-hours">6:00</label>
+                        <div class="checkbox-styled eighthours">
+                            <input type="radio" name="hours" id="eight-hours" checked>
+                        </div>
+                        <label for="eight-hours">8:48</label>
+                    </div>
+                </div>
+                <div class="autocomplete-content options">
+                    <div class="checkbox-styled">
+                        <input id="autocomplete" name="autocomplete" type="checkbox"> 
+                    </div>
+                    <label for="autocomplete">Preencher saída automaticamente</label>
+                </div>
+                <div class="ten-minutes-content options">
+                    <div class="checkbox-styled">
+                        <input id="ten-minutes" name="ten-minutes" type="checkbox"> 
+                    </div>
+                    <label for="ten-minutes">Calcular com os 10 minutos de tolerância</label>
+                </div>
+            </div>
             <div class="title-content">
                 <img class="icon-timer" src="resources/icon-timer.svg" alt="Ícone temporizador">
                 <h1 class="title">CALCULE SUAS HORAS DE TRABALHO</h1>
             </div>
-            <div class="carga-hor">
-                <span class="text-question">Carga horária:</span>
-                <div class="input-content">
-                    <div class="checkbox-styled sixhours">
-                        <input type="radio" name="hours" id="six-hours">
-                    </div>
-                    <label for="six-hours">6:00</label>
-                    <div class="checkbox-styled eighthours">
-                        <input type="radio" name="hours" id="eight-hours" checked>
-                    </div>
-                    <label for="eight-hours">8:48</label>
-                </div>
-            </div>
+            
 
-            <div class="autocomplete-content">
-                <div class="checkbox-styled">
-                    <input id="autocomplete" name="autocomplete" type="checkbox"> 
-                </div>
-                <label for="autocomplete">Preencher saída automaticamente</label>
-            </div>
+            
 
             <div class="horarios">
                 <span class="text-question">Digite seus horários:</span>
                 <div class="inputs-horarios">
                     <div class="entrada">
-                        <label for="entrada1">Entrada:</label>
+                        <label for="entrada1">Entrada</label>
                         <div class="input-timer">
                             <input id="entrada1" name="entrada1" type="text" placeholder="00:00" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
                     <div class="saida">
-                        <label for="saida1">Saída:</label>
+                        <label for="saida1">Saída</label>
                         <div class="input-timer">
                             <input id="saida1" name="saida1" type="text" placeholder="00:00" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
                     <div class="entrada">
-                        <label for="entrada2">Entrada:</label>
+                        <label for="entrada2">Entrada</label>
                         <div class="input-timer">
                             <input id="entrada2" name="entrada2" type="text" placeholder="00:00" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
                     <div class="saida">
-                        <label for="saida2">Saída:</label>
-                        <div class="input-timer last">
+                        <label for="saida2">Saída</label>
+                        <div class="input-timer">
                             <input id="saida2" name="saida2" type="text" placeholder="00:00" data-inputmask="'mask': '99:99'">
                         </div>
                     </div>
+                    <span class="more-inputs">+</span>
                 </div>
             </div>
 
@@ -103,7 +113,7 @@
                     <button class="button-add-horas" type="button">Atualizar Saldo</button>
                 </div>
             </div>
-            <div class="resultadoTotalHoras">
+            <div class="resultadoTotalHoras" title="Horas trabalhadas">
                 <span class="resultado">00:00</span>
             </div>
         </div>

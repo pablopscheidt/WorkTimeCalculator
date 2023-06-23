@@ -2,10 +2,15 @@ $(document).ready(function() {
     // script para o checkbox personalizado realizar a função do check nativo.
     $('.carga-hor .checkbox-styled input[checked]').closest('.checkbox-styled').addClass('checked'); 
 
-    $('.autocomplete-content .checkbox-styled').on('click', function() {
+    $('.options .checkbox-styled').on('click', function() {
         $(this).next('label').click();
         $(this).toggleClass('checked');
         completaAutomatico();
+    })
+
+    $('.icon-gear,.overflow').on('click', function() {
+        $('.config-ctn').toggleClass('config-open');
+        $('.overflow').toggleClass('config-open');
     })
 
     $("input#saldo").inputmask("99:99", {
@@ -256,6 +261,7 @@ $(document).ready(function() {
             title: 'Meu saldo do banco de horas',
             html: `<input id="saldo" name="saldo" placeholder="00:00" type="text" data-inputmask="'mask': '99:99'">`,
             confirmButtonText: `<img src="resources/save.svg" alt="Salvar">`+'Salvar',
+            showCloseButton: true,
             customClass: {
                 confirmButton: 'button-save',
             }

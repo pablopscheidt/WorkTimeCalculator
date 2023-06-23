@@ -1,25 +1,10 @@
 :root {
-  --bg-color: #E9ECEF;
-  --bg-modal: #F8F9FA;
-  --bg-gradient-title: #A056FF;
-  --input-color: #DEE2E6;
-  --text-principal: #000;
-  --text-secundario: #343A40;
-}
-
-html[data-theme=dark] {
   --bg-color: #1e1e1e;
   --bg-modal: #252525;
   --bg-gradient-title: linear-gradient(90deg, #00FFF0 2.05%, #71BBFF 44.17%, #A056FF 87.91%);
   --input-color: #383A40;
   --text-principal: #fff;
   --text-secundario: #bdbdbd;
-}
-html[data-theme=dark] .checkbox-styled.checked {
-  background-image: url(../resources/Check.svg);
-}
-html[data-theme=dark] .gb-logo {
-  filter: invert(1);
 }
 
 * {
@@ -61,7 +46,7 @@ body main {
   transition: background-color 0.3s linear;
 }
 .checkbox-styled.checked {
-  background-image: url(../resources/Check_light.svg);
+  background-image: url(../resources/Check.svg);
 }
 .checkbox-styled input {
   display: none;
@@ -144,31 +129,106 @@ body main {
   left: 24px;
   transition: all 0.3s linear;
   opacity: 0.5;
+  filter: invert(1);
 }
 .calc-area .gb-logo:hover {
   opacity: 1;
 }
-.calc-area .carga-hor .input-content {
+.calc-area .icon-gear {
+  background: url(../resources/gear.svg);
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  transition: all 0.3s linear;
+  opacity: 0.5;
+  cursor: pointer;
+  z-index: 2;
+}
+.calc-area .icon-gear:hover {
+  opacity: 1;
+}
+.calc-area .overflow {
+  position: fixed;
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: none;
+}
+.calc-area .overflow.config-open {
+  display: block;
+}
+.calc-area .config-ctn {
+  position: absolute;
+  right: -14px;
+  top: 70px;
+  border-radius: 4px;
+  background: var(--bg-modal);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  transform: translateX(-100px);
+  opacity: 0;
+  animation: animationConfig 1s ease forwards;
+  z-index: 2;
+}
+.calc-area .config-ctn:not(.config-open) {
+  display: none;
+}
+.calc-area .config-ctn .triangle {
+  position: absolute;
+  top: -8px;
+  right: 46px;
+  border-top: 16px solid var(--bg-modal);
+  border-right: 16px solid transparent;
+  transform: rotate(45deg);
+}
+.calc-area .config-ctn .carga-hor .input-content {
   display: flex;
   margin-top: 8px;
 }
-.calc-area .carga-hor .input-content label {
+.calc-area .config-ctn .carga-hor .input-content label {
   font-size: 14px;
   margin: 0 16px 0 8px;
   cursor: pointer;
 }
-.calc-area .autocomplete-content {
+.calc-area .config-ctn .options {
   display: flex;
   align-items: center;
 }
-.calc-area .autocomplete-content label {
+.calc-area .config-ctn .options label {
   margin-left: 8px;
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
 }
+@keyframes animationConfig {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  80% {
+    transform: translateX(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
 .calc-area .horarios .inputs-horarios {
   display: flex;
+  position: relative;
+  gap: 8px;
+  margin-top: 16px;
 }
 @media screen and (max-width: 576px) {
   .calc-area .horarios .inputs-horarios {
@@ -179,19 +239,28 @@ body main {
     grid-row-gap: 0px;
     justify-content: center;
   }
-  .calc-area .horarios .inputs-horarios .input-timer::after {
-    content: initial !important;
-  }
 }
-.calc-area .horarios .inputs-horarios label {
+.calc-area .horarios .inputs-horarios .saida,
+.calc-area .horarios .inputs-horarios .entrada {
+  position: relative;
+}
+.calc-area .horarios .inputs-horarios .saida label,
+.calc-area .horarios .inputs-horarios .entrada label {
   font-size: 14px;
+  position: absolute;
+  top: -10px;
+  left: 6px;
+  background: var(--bg-modal);
+  padding: 0 4px;
 }
-.calc-area .horarios .inputs-horarios .input-timer {
+.calc-area .horarios .inputs-horarios .saida .input-timer,
+.calc-area .horarios .inputs-horarios .entrada .input-timer {
   display: flex;
 }
-.calc-area .horarios .inputs-horarios .input-timer input {
-  background: var(--input-color);
-  border: none;
+.calc-area .horarios .inputs-horarios .saida .input-timer input,
+.calc-area .horarios .inputs-horarios .entrada .input-timer input {
+  background: var(--bg-modal);
+  border: 2px solid var(--input-color);
   outline: none;
   border-radius: 4px;
   padding: 8px;
@@ -201,22 +270,26 @@ body main {
   transition: all 0.3s linear;
 }
 @media screen and (max-width: 576px) {
-  .calc-area .horarios .inputs-horarios .input-timer input {
+  .calc-area .horarios .inputs-horarios .saida .input-timer input,
+  .calc-area .horarios .inputs-horarios .entrada .input-timer input {
     width: 100%;
     max-width: 100%;
   }
 }
-.calc-area .horarios .inputs-horarios .input-timer::after {
-  content: ".";
-  color: var(--text-principal);
-  display: block;
-  line-height: 50%;
-  font-size: 30px;
-  margin: 0 8px;
-  transition: color 0.3s linear;
-}
-.calc-area .horarios .inputs-horarios .input-timer.last::after {
-  content: initial;
+.calc-area .horarios .inputs-horarios .more-inputs {
+  position: absolute;
+  right: -9px;
+  top: 9px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  background: #a961ff;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .calc-area .checkbox-banco {
   display: flex;
@@ -264,8 +337,8 @@ body main {
 }
 .calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo input,
 .calc-area .meu-banco-horas .saldo-usuario .ctn-input-saldo #saldo {
-  background: var(--input-color);
-  border: none;
+  background: var(--bg-modal);
+  border: 2px solid var(--input-color);
   outline: none;
   font-size: 14px;
   border-radius: 0 4px 4px 0;
@@ -329,59 +402,4 @@ body main {
 }
 .button-save img {
   margin-right: 8px;
-}
-
-.switch {
-  display: block;
-  --width-of-switch: 3.5em;
-  --height-of-switch: 2em;
-  --size-of-icon: 1.4em;
-  --slider-offset: 0.3em;
-  width: var(--width-of-switch);
-  height: var(--height-of-switch);
-  position: absolute;
-  top: 24px;
-  right: 24px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  transition: 0.4s;
-  border-radius: 30px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: var(--size-of-icon, 1.4em);
-  width: var(--size-of-icon, 1.4em);
-  border-radius: 20px;
-  left: var(--slider-offset, 0.3em);
-  top: 50%;
-  transform: translateY(-50%);
-  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
-  transition: 0.4s;
-}
-
-html[data-theme=dark] .slider {
-  background-color: #303136;
-  border: none;
-}
-html[data-theme=dark] .slider:before {
-  left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
-  background: #303136;
-  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }/*# sourceMappingURL=style.css.map */
