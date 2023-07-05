@@ -2,7 +2,7 @@ $(document).ready(function() {
     // script para o checkbox personalizado realizar a função do check nativo.
     $('.carga-hor .checkbox-styled input[checked]').closest('.checkbox-styled').addClass('checked'); 
 
-    $('.options .checkbox-styled').on('click', function() {
+    $('.options .checkbox-styled, .autocomplete-content .checkbox-styled').on('click', function() {
         $(this).next('label').click();
         $(this).toggleClass('checked');
         completaAutomatico();
@@ -12,20 +12,20 @@ $(document).ready(function() {
         $('.config-ctn').toggleClass('config-open');
         $('.overflow').toggleClass('config-open');
     })
-
-    $("input#saldo").inputmask("99:99", {
-        alias: "numeric",
-        placeholder: '',
-        allowPlus: false,
-        allowMinus: false
-    });
-
+    
     //Passar para o proximo input quando preenchido
     var inputs = $('.input-timer input');
     inputs.on('keyup', function(e) {
         if ($(this).val().replace(/[^0-9]/g,'').length === 4) {
           var index = inputs.index(this);
           inputs.eq(index + 1).focus();
+        }
+    });
+
+    $('#saida2').keyup(function(event) {
+        if (event.keyCode === 8) {
+            $('.autocomplete-content #autocomplete').prop('checked', false);
+            $('.autocomplete-content .checkbox-styled').removeClass('checked');
         }
     });
 
@@ -101,6 +101,9 @@ $(document).ready(function() {
             let minESecondHalf = (he2 * 60) + me2;
 
             let minutoTotalSaida = minESecondHalf + (cargaHoraria - firstHalf);
+            if ($('#ten-minutes').is(':checked')) {
+                minutoTotalSaida = minutoTotalSaida - 10;
+            }
             let minutoSaida = minutoTotalSaida%60;
             let horaSaida = (minutoTotalSaida - minutoSaida)/60;
             let hs2 = (`00${horaSaida}`).slice(-2);
@@ -131,19 +134,23 @@ $(document).ready(function() {
             // Atualiza o valor do input
             $(this).val(newValue);
             calculoHoras()
+        } else if ($(this).val().replace(/[^0-9]/g,'').length == 3 && parseInt($(this).val().replace(/[^0-9]/g,'').charAt(0)) > 5) {
+            let newValue = "0" + $(this).val().replace(/[^0-9]/g,'');
+            // Atualiza o valor do input
+            $(this).val(newValue);
         }
     });
 
     const btnSalvar = $('.button-add-horas')
     const inputSaldo = $('input#saldo');
 
-    function validaSaldoPreenchido(btn, inputSaldo){
-        if ((inputSaldo.val().replace(/[^0-9]/g,'').length === 4) && ($('.saldo-mais-menos').text() != "") && ($('.saldo-mais-menos').text() != "Você está nos 10 minutos de tolerância.")) {
-            btn.show()
-        } else {
-            btn.hide() 
-        }
-    }
+    // function validaSaldoPreenchido(btn, inputSaldo){
+    //     if ((inputSaldo.val().replace(/[^0-9]/g,'').length === 4) && ($('.saldo-mais-menos').text() != "") && ($('.saldo-mais-menos').text() != "Você está nos 10 minutos de tolerância.")) {
+    //         btn.show()
+    //     } else {
+    //         btn.hide() 
+    //     }
+    // }
 
     let horasPosNeg;
     let isNegative;
@@ -222,9 +229,9 @@ $(document).ready(function() {
         }
     })
 
-    inputSaldo.on('keyup', function(){
-        validaSaldoPreenchido(btnSalvar, $(this));
-    })
+    // inputSaldo.on('keyup', function(){
+    //     validaSaldoPreenchido(btnSalvar, $(this));
+    // })
     
     $('.carga-hor .checkbox-styled').on('click', function() {
         $(this).next('label').click();
@@ -233,13 +240,13 @@ $(document).ready(function() {
             $(this).addClass('checked')
         }
         calculaSaldo()
-        validaSaldoPreenchido(btnSalvar, inputSaldo)
+        // validaSaldoPreenchido(btnSalvar, inputSaldo)
     })
 
     $('.inputs-horarios input').on('keyup blur', function() {
         completaAutomatico();
         calculoHoras()
-        validaSaldoPreenchido(btnSalvar, inputSaldo)
+        // validaSaldoPreenchido(btnSalvar, inputSaldo)
         
         for (var i = 0; i < 4; i++) {
             if ($('.inputs-horarios input')[i].value.replace(/[^0-9]/g,'').length < 4) {

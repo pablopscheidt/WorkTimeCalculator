@@ -11,7 +11,6 @@
     <link rel="shortcut icon" href="resources/favicon.svg" type="image/x-icon" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="scripts/script.js"></script>
-    <script src="scripts/themes.js"></script>
     <script src="inputmask/dist/jquery.inputmask.js"></script>
     <script src="inputmask/dist/bindings/inputmask.binding.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -37,12 +36,6 @@
                         </div>
                         <label for="eight-hours">8:48</label>
                     </div>
-                </div>
-                <div class="autocomplete-content options">
-                    <div class="checkbox-styled">
-                        <input id="autocomplete" name="autocomplete" type="checkbox"> 
-                    </div>
-                    <label for="autocomplete">Preencher saída automaticamente</label>
                 </div>
                 <div class="ten-minutes-content options">
                     <div class="checkbox-styled">
@@ -90,6 +83,13 @@
                 </div>
             </div>
 
+            <div class="autocomplete-content">
+                <div class="checkbox-styled">
+                    <input id="autocomplete" name="autocomplete" type="checkbox"> 
+                </div>
+                <label for="autocomplete">Preencher saída automaticamente</label>
+            </div>
+
             <div class="banco-horas">
                 <div class="checkbox-banco">
                     <div class="checkbox-styled">
@@ -101,7 +101,7 @@
                 <div class="meu-banco-horas">
                     <div class="ctn-saldo">
                         <div class="saldo-usuario">
-                            <label for="saldo" class="text-question">Saldo do banco de horas</label>
+                            <label for="saldo" class="text-question">Saldo:</label>
                             <div class="ctn-input-saldo">
                                 <div class="button-edit edit-saldo"><img src="resources/edit.svg" alt="Editar"></div>
                                 <div id="saldo">00:00</div>

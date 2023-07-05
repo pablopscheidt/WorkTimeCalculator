@@ -28,6 +28,11 @@ body {
   height: 100%;
   min-height: 100vh;
 }
+@media screen and (max-width: 576px) {
+  body {
+    background: var(--bg-modal);
+  }
+}
 body main {
   display: flex;
   flex-direction: column;
@@ -112,13 +117,6 @@ body main {
   max-width: 530px;
   transition: all 0.3s linear;
 }
-@media screen and (max-width: 576px) {
-  .calc-area {
-    padding: 16px;
-    background: none;
-    box-shadow: none;
-  }
-}
 .calc-area .gb-logo {
   background: url(../resources/gb-logo.svg);
   background-size: contain;
@@ -135,20 +133,30 @@ body main {
   opacity: 1;
 }
 .calc-area .icon-gear {
-  background: url(../resources/gear.svg);
-  background-size: contain;
-  width: 32px;
-  height: 32px;
+  background: url(../resources/gear.svg) no-repeat center center;
+  background-size: 32px;
+  width: 40px;
+  height: 40px;
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 22px;
+  right: 22px;
   transition: all 0.3s linear;
-  opacity: 0.5;
   cursor: pointer;
   z-index: 2;
+  border-radius: 4px;
 }
 .calc-area .icon-gear:hover {
-  opacity: 1;
+  background-color: #434343;
+}
+@media screen and (max-width: 576px) {
+  .calc-area {
+    padding: 16px;
+    box-shadow: none;
+  }
+  .calc-area .icon-gear,
+  .calc-area .gb-logo {
+    position: fixed;
+  }
 }
 .calc-area .overflow {
   position: fixed;
@@ -176,9 +184,8 @@ body main {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 16px;
-  transform: translateX(-100px);
   opacity: 0;
-  animation: animationConfig 1s ease forwards;
+  animation: animationConfig 0.5s ease forwards;
   z-index: 2;
 }
 .calc-area .config-ctn:not(.config-open) {
@@ -211,17 +218,39 @@ body main {
   font-weight: 400;
   cursor: pointer;
 }
+@media screen and (max-width: 576px) {
+  .calc-area .config-ctn {
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 32px 16px;
+  }
+  .calc-area .config-ctn .triangle {
+    display: none;
+  }
+}
+.calc-area .autocomplete-content {
+  display: flex;
+  align-items: center;
+}
+.calc-area .autocomplete-content label {
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
 @keyframes animationConfig {
   0% {
     opacity: 0;
-    transform: translateX(60px);
-  }
-  80% {
-    transform: translateX(-5px);
   }
   100% {
     opacity: 1;
-    transform: translateX(0px);
   }
 }
 .calc-area .horarios .inputs-horarios {
@@ -232,12 +261,14 @@ body main {
 }
 @media screen and (max-width: 576px) {
   .calc-area .horarios .inputs-horarios {
-    display: grid;
-    grid-template-columns: repeat(2, 40%);
-    grid-template-rows: repeat(2, auto);
-    grid-column-gap: 10%;
-    grid-row-gap: 0px;
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .calc-area .horarios .inputs-horarios .saida,
+  .calc-area .horarios .inputs-horarios .entrada {
+    width: 48%;
+    margin: 8px 0;
   }
 }
 .calc-area .horarios .inputs-horarios .saida,
@@ -393,6 +424,15 @@ body main {
   border-radius: 4px;
   font-weight: 600;
   margin: 32px auto 0;
+}
+@media screen and (max-width: 576px) {
+  .calc-area .resultadoTotalHoras {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
 }
 
 .button-save {
